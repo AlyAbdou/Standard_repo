@@ -1,4 +1,4 @@
-# Standard Repo
+# Standard Repo - work in progress
 
 A standard repo structure for python projects. It contains different directories with their own README.md files to explain their puposes.
 
