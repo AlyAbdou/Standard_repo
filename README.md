@@ -2,7 +2,7 @@
 
 A standard repo structure for python projects. It contains different directories with their own README.md files to explain their puposes.
 
-Adpated from https://gist.github.com/PurpleBooth/b24679402957c63ec426
+Adpated from [https://gist.github.com/PurpleBooth/b24679402957c63ec426](https://github.com/PurpleBooth)
 
 ## Getting Started
 
