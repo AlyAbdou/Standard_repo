@@ -1,0 +1,8 @@
+pylint
+pytest
+pytest-cov
+black
+pre-commit
+poetry
+mypy
+ipython

@@ -1,0 +1,131 @@
+###############################################
+### work flow to setup new project in steps ###
+###############################################
+
+standard packages to setup your machine
+	- pipenv
+	- cookiecutter
+	- virtualenv
+	- build
+	
+Setup and activate virtual environment:
+	- create folder for the project using 'cookiecutter gh:<github_repo>' / or clone a github repo using 'git clone <remote_url>'
+		- tests >> include test files
+		- scripts >> includes all the software scripts
+		- venv >> virtual environment which is created automatically
+		- data >> includes any data necessary for the software
+		- UI >> inlcudes all UI files (html, CSS, python, etc.)
+		- verifications >> includes passwords and private info (this folder should be added to .gitignore)
+		- workflows >> defines the yaml files for github and gitlab workflows (CI/CD)
+		- readme.MD
+		- .pre-commit-config.yml
+		- .pylintrc
+		- .gitignore
+		- code_checker.py
+		- generate_MD_file.py
+		- requirements.txt
+		- workflow.txt
+		- gitlab-ci.yml
+		- github-ci.yml
+		- environment.yml
+		
+	- Create readme.md file to explain:
+		- 
+		
+	- start git bash and cd to project folder
+	- python -m venv venv
+	- source venv/Scripts/activate
+	- clone github repo of project structure
+	- conda env create -f environment.yml
+	- python -m pip install -r requirements.txt
+	- touch .gitignore
+	- pylint --generate-rcfile > .pylintrc (adjust "max-line-length=79" following pip8)
+	- touch .pre-commit-config.yml (only to create a new pre commit config file)
+	- pre-commit installed at .git/hooks/pre-commit
+	- pre-commit autoupdate
+	- git config --global diff.tool <tool_name> >> if you haven't already configured a diff tool (winmerge)
+	- git config --global difftool.prompt false >> if you haven't already
+	
+	- git remote add origin <url_to_remote_repo> >> if you created a local repo (not cloned a repo)
+	- git push -u origin master
+
+IDE setup:
+	PyCharm:
+		- Open the project folder in PyCharm
+		- File > Settings > select: project_name > Python Interpreter
+		- Click settings icon > Add...
+		- Add python Interpreter window appears > Virtualenv Environment > Existing environment checkbox
+		- make sure Interpreter points to Python 3 executable inside the virtual environment
+		- Select 'Make available to all projects' checkbox > OK > select the correct Python version
+		- Run > Edit Configurations... > Add new run configuration... > Python
+		- Script path > python_file.py & Python interpreter > current_pyton_version
+		- Apply
+		
+	VSCode:
+		- install python extension
+		- install python debugger extension
+		- install pylint extension
+		- install black formater extension
+		- configure python tests (choose pytest)
+		
+During development:
+	standard imports for all code
+		- from typing import Union, Optional, Any, List, Tuple, Dict, Set
+			Union[int, str, float]: to create union of type hints for a variable, etc.
+			Optional[str]: created optional type hints
+			Any: lets a variable, etc. have any type hint
+			List[Union[int, float]]: specify the variable is a list type and the elements within are either int or float
+		- import cProfile
+	build modular code
+		- Abstraction
+		- Code decoupling
+		- Code refactoring
+		- Comment code and create docstring before starting algorithm development to better clarify the functionality
+		- Don't let errors go unnoticed
+		- make paraterized unit tests
+		- profile code performace using 'cProfile.run()'
+		
+	before using git:
+		- pyhton -m pylint <folder> or pylint <python_file.py>
+		- python -m pytest --cov=<directory/file_to_be_tested_name> --cov-report term-missing tests/<test_file_name.py>
+		- python -m mypy <file_name.py> (optional if not configured in the IDE)
+		- precommit run --all-files
+		- python -m pip freeze --local > requirements.txt
+		- conda env export > environment.yml
+		
+	Git commands:
+		- git status >> before any "git_command" to check working directory and status of development
+		- git switch -c <branch_name> >> create new branch and switch to it
+		- git add <file_name> / git add .
+		- git commit -m "comment"
+		- git pull
+		- git push origin <branch_name> / git push -u origin <branch_name> (to push new branch that is not on remote repo)
+		- git merge <branch_name> >> merges <branch_name> to current branch
+		
+After finishing
+	- poetry init >> to package the project
+	- poetry build
+	- source venv/Scripts/deactivate
+	
+distribution
+	- share whl file
+	- pyhton -m pip install <directory>/<file_name>.whl
+	
+	
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Standard packages to setup your machine
+	- install miniconda
+	- install git
+	- python -m pip install pipenv
+	- python -m pip install cookiecutter
+	- python -m pip install virtualenv
+	- python -m pip install build
+	
+Project setup
+	- start git-bash
+	- cd <directory_where_project_will_be>
+	- mkdir <project_name>
+	- conda create --name venv
+	- conda activate venv
+	- cookiecutter gh:<github_repo>
